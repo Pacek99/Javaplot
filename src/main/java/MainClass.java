@@ -18,9 +18,9 @@ public class MainClass {
 	private static String activity = "elevatorDown";
  
 	public static void main(String[] args) {
-		String csvFile = "indora-1540554936805.csv";
-
-		JavaPlot p = new JavaPlot();
+            String csvFile = "resources/indora-1540554936805.csv";
+            try {
+                JavaPlot p = new JavaPlot();
 		double[][] data = filterCSVFileBySensorAndActivityOnlyZAxis(sensor, activity, csvFile);
 		if (data == null) {
 			System.out.println("Data array is empty!");
@@ -35,6 +35,10 @@ public class MainClass {
 		p.addPlot(s);
 		
 		p.plot();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Zadana aktivita sa v dátach nenachadza!");
+            }		
 	}
 
 	public static double[][] filterCSVFileBySensorAndActivity(String sensor, String activity, String csvFile) {
@@ -118,5 +122,4 @@ public class MainClass {
 		}
 		return data;
 	}
-
 }
