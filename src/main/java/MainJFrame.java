@@ -41,6 +41,9 @@ public class MainJFrame extends javax.swing.JFrame {
         messageLabel = new javax.swing.JLabel();
         javaplotLabel = new javax.swing.JLabel();
         chosenFileLabel = new javax.swing.JLabel();
+        activitiesComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        osZCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,23 +63,43 @@ public class MainJFrame extends javax.swing.JFrame {
 
         chosenFileLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        activitiesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "walking", "standing", "walkingUpstairs", "walkingDownstairs", "elevatorUp", "elevatorDown" }));
+        activitiesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activitiesComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Vyber aktivitu:");
+
+        osZCheckBox.setText("použiť iba os Z");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(javaplotLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
+                        .addComponent(javaplotLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(messageLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(chosenFileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(openFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(openFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(activitiesComboBox, 0, 135, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(osZCheckBox)
+                                .addGap(19, 19, 19)))))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -84,7 +107,12 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(javaplotLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(activitiesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(osZCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -103,14 +131,18 @@ public class MainJFrame extends javax.swing.JFrame {
                 csvFile = openFileChooser.getName(openFileChooser.getSelectedFile());
                 messageLabel.setText("Subor uspesne nacitany!");
                 chosenFileLabel.setText(csvFile);
-                MainClass.main(csvFile);
+                MainClass.main(csvFile, (String)activitiesComboBox.getSelectedItem(), osZCheckBox.isSelected());
             } catch (Exception e) {
-                messageLabel.setText("Subor sa nenacita!");
+                messageLabel.setText("Subor sa nenacital!");
             }
         } else {
             messageLabel.setText("Nie je vybratý súbor!");
         }
     }//GEN-LAST:event_openFileButtonActionPerformed
+
+    private void activitiesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activitiesComboBoxActionPerformed
+        
+    }//GEN-LAST:event_activitiesComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,9 +180,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> activitiesComboBox;
     private javax.swing.JLabel chosenFileLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel javaplotLabel;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JButton openFileButton;
+    private javax.swing.JCheckBox osZCheckBox;
     // End of variables declaration//GEN-END:variables
 }
