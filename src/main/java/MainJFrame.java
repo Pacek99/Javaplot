@@ -128,7 +128,7 @@ public class MainJFrame extends javax.swing.JFrame {
         int returnValue = openFileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             try {
-                csvFile = openFileChooser.getName(openFileChooser.getSelectedFile());
+                csvFile = openFileChooser.getSelectedFile().getAbsolutePath();
                 messageLabel.setText("Subor uspesne nacitany!");
                 chosenFileLabel.setText(csvFile);
                 MainClass.main(csvFile, (String)activitiesComboBox.getSelectedItem(), osZCheckBox.isSelected());

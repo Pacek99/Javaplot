@@ -18,9 +18,9 @@ public class MainClass {
 	private static String sensor = "AK09918C";
 	//private static String activity = "elevatorDown";
  
-	public static void main(String file, String activity, boolean osZ) {
+	public static void main(String csvFile, String activity, boolean osZ) {
             //String csvFile = "resources/indora-1540554936805.csv";
-            String csvFile = "resources/" + file;
+            //String csvFile = "resources/" + file;
             try {
                 JavaPlot p = new JavaPlot();
 		double[][] data = null;
