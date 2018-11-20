@@ -46,6 +46,7 @@ public class MainJFrame extends javax.swing.JFrame {
         osZCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 300));
 
         openFileButton.setText("Open");
         openFileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +62,7 @@ public class MainJFrame extends javax.swing.JFrame {
         javaplotLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         javaplotLabel.setText("Javaplot");
 
-        chosenFileLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chosenFileLabel.setFont(chosenFileLabel.getFont());
 
         activitiesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "walking", "standing", "walkingUpstairs", "walkingDownstairs", "elevatorUp", "elevatorDown" }));
         activitiesComboBox.addActionListener(new java.awt.event.ActionListener() {
