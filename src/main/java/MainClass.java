@@ -10,19 +10,25 @@ import com.panayotis.gnuplot.JavaPlot;
 import com.panayotis.gnuplot.plot.DataSetPlot;
 import com.panayotis.gnuplot.style.PlotStyle;
 import com.panayotis.gnuplot.style.Style;
+import javax.swing.JOptionPane;
 
 public class MainClass {
 
 	private static Map<Double, Double> map;
 	private static String sensor = "AK09918C";
-	private static String activity = "elevatorDown";
+	//private static String activity = "elevatorDown";
  
-	public static void main(String args) {
+	public static void main(String file, String activity, boolean osZ) {
             //String csvFile = "resources/indora-1540554936805.csv";
-            String csvFile = "resources/" + args;
+            String csvFile = "resources/" + file;
             try {
                 JavaPlot p = new JavaPlot();
-		double[][] data = filterCSVFileBySensorAndActivityOnlyZAxis(sensor, activity, csvFile);
+		double[][] data = null;
+                if (osZ) {
+                    data = filterCSVFileBySensorAndActivityOnlyZAxis(sensor, activity, csvFile);
+                } else {
+                    data = filterCSVFileBySensorAndActivity(sensor, activity, csvFile);
+                }
 		if (data == null) {
 			System.out.println("Data array is empty!");
 			return;
@@ -38,6 +44,7 @@ public class MainClass {
 		p.plot();
             } catch (Exception e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Zadana aktivita sa v dátach nenachadza!");
                 System.out.println("Zadana aktivita sa v dátach nenachadza!");
             }		
 	}
