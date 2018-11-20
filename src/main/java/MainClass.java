@@ -17,8 +17,9 @@ public class MainClass {
 	private static String sensor = "AK09918C";
 	private static String activity = "elevatorDown";
  
-	public static void main(String[] args) {
-            String csvFile = "resources/indora-1540554936805.csv";
+	public static void main(String args) {
+            //String csvFile = "resources/indora-1540554936805.csv";
+            String csvFile = "resources/" + args;
             try {
                 JavaPlot p = new JavaPlot();
 		double[][] data = filterCSVFileBySensorAndActivityOnlyZAxis(sensor, activity, csvFile);
